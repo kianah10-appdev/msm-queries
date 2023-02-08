@@ -1,0 +1,82 @@
+<h1>
+  Movie <%=@the_movie_one.id%> details
+</h1>
+
+<a href="/movies" class="btn btn-block btn-outline-secondary">
+  Go back
+</a>
+
+&nbsp;|&nbsp;
+
+<a href="/delete_movie/1" class="btn btn-block btn-outline-secondary">
+  Delete movie
+  <small>(Building this link is not required. It's an optional stretch goal; but, you have the tools if you want to give it a try.)</small>
+</a>
+
+<hr>
+
+<dl>
+  <dt>
+    Title
+  </dt>
+  <dd>
+    <%=@the_movie_one.title%>  
+  </dd>
+
+  <dt>
+    Year
+  </dt>
+  <dd>
+    <%=@the_movie_one.year%>
+  </dd>
+
+  <dt>
+    Duration
+  </dt>
+  <dd>
+    <%=@the_movie_one.duration%>
+  </dd>
+
+  <dt>
+    Description
+  </dt>
+  <dd>
+     <%=@the_movie_one.description%>
+  </dd>
+<% @find_director.each do |m_details| %>
+  <dt>
+    Image
+  </dt>
+  <dd>
+    <img src="http://robohash.org/<%= m_details.image%>">
+    <!-- style="width:250px;">-->
+  </dd>
+
+  <dt>
+    Director
+  </dt>
+ 
+  <dd>
+
+
+    <% m = Director.where({ :id => m_details.director_id}).at(0) %>
+      <%= m.name %>
+      <%end%>
+  </dd>
+
+  <dt>
+    Created at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@the_movie_one.created_at) %> ago
+  </dd>
+
+  <dt>
+    Updated at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@the_movie_one.updated_at)%> ago
+  </dd>
+</dl>
+
+<hr>
